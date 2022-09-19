@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML table reorder by drag and drop rows</title>
+        <script src="/src/drag2reorder.js"></script>
+    </head>
+    <body>
+
+        <h1>Usage example</h1>
+
+        <h2>Table with additional buttons</h2>
+        <button dragreorder-ref="abcd" dragreorder-action="conditional">Conditional button</button>
+        <button dragreorder-ref="abcd" dragreorder-action="save">Save changes</button>
+        <button dragreorder-ref="abcd" dragreorder-action="cancel">Reset order</button>
+        <table dragreorder-ref="abcd" dragreorder-rowskip="1" dragreorder-action="button">
+            <tr>
+                <th>Id</th>
+                <th>Product</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td dragreorder-id="1">A</td>
+                <td>Apple</td>
+                <td>Red apples</td>
+            </tr>
+            <tr>
+                <td dragreorder-id="2">B</td>
+                <td>Bannana</td>
+                <td>Large bannanas</td>
+            </tr>
+            <tr>
+                <td dragreorder-id="3">C</td>
+                <td>Carrot</td>
+                <td>Orange carrots</td>
+            </tr>
+        </table>
+
+
+        <h2>Table with instant action and no buttons</h2>
+        <table dragreorder-ref="efgh" dragreorder-action="instant">
+            <tr>
+                <td dragreorder-id="abc">1</td>
+                <td>Alfa Romeo</td>
+            </tr>
+            <tr>
+                <td dragreorder-id="def">B</td>
+                <td>Bugatti</td>
+            </tr>
+            <tr>
+                <td dragreorder-id="ghi">C</td>
+                <td>Citroen</td>
+            </tr>
+        </table>
+
+        <script>
+            /**
+             * Initialise drag to reorder functionality
+             */
+            document.addEventListener("DOMContentLoaded", function () {
+                
+                // Find all tables with dragreorder=true attribute
+                document.querySelectorAll("table[dragreorder=true]").forEach(element => {
+                
+                    // Initialise the object and make table draggable
+                    let object = new DragReorder(element);
+
+                });
+
+            });
+        </script>
+
+        <style>
+            table {
+                border: thin slid gray;
+            }
+            tr:odd {
+                background-color: lightblue;
+            }
+            td {
+                border: thin slid gray;
+            }
+        </style>
+    </body>
+</html>
