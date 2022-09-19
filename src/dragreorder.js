@@ -503,19 +503,3 @@ class DragReorder {
     }
 
 }
-
-
-/**
- * Initialise dragtosort functionality
- */
-document.addEventListener("DOMContentLoaded", function () {
-
-    // Find all tables with dragtosort=true attribute
-    document.querySelectorAll("table[dragtosort=true]").forEach(element => {
-
-        // Initialise the object and make table draggable
-        let object = new DragSort(element);
-
-    });
-});
-
