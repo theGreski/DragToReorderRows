@@ -18,10 +18,7 @@
  */
  class DragReorder {
 
-    
-    
-    #initialOrder;
-    #currentlyDraggedClassName = "dragreorder-dragging";
+    #initialOrder;    
     #container;
     #reference;
     #excludeTopRows;
@@ -31,6 +28,7 @@
     #other_btns;
     #currentlyDraggedElement;
     #settings = {
+        'dragover_classname': 'dragreorder-dragging',
         'hide_conditional': true, 
         'hide_savecancel': true,
     };
@@ -39,11 +37,12 @@
 
     /**
      * Sets all data to work on
-     * @param   {Object}                        htmltable                           Reference the javascript controller.
-     * @param   {Object}                        [settings]                          Customize behaviour.
-     * @param   {boolean}                       [settings.hide_conditional=true]    Hide conditional buttons when order has changed and changes not saved;
-     * @param   {boolean}                       [settings.hide_savecancel=true]     Hide Save and Cancel buttons when no changes to order done;
-     * @param   {Requester~requestCallback}     [callback=null]                     The callback that Will be triggered when save button clicked or at the dragend if instant action selected
+     * @param   {Object}                        htmltable                       Reference the javascript controller.
+     * @param   {Object}                        [settings]                      Customize behaviour.
+     * @param   {string}                        [settings.dragover_classname]   Custom class name for currently dragged row;
+     * @param   {boolean}                       [settings.hide_conditional]     Hide conditional buttons when order has changed and changes not saved;
+     * @param   {boolean}                       [settings.hide_savecancel]      Hide Save and Cancel buttons when no changes to order done;
+     * @param   {Requester~requestCallback}     [callback=null]                 The callback that Will be triggered when save button clicked or at the dragend if instant action selected
      */
     constructor(htmltable, settings=null, callback=null) {
         
@@ -66,18 +65,6 @@
         this.#makeRowsDraggable();
     }
 
-    /**
-     * Change class name for custom
-     * @param   {string}                        name                                Custom class name for dragged element
-     */
-    
-    set className(name) {
-        if(name.trim().length < 1) {
-            console.error("Provided parameter cannot be empty");
-            return false;
-        }
-        this.#currentlyDraggedClassName = name.trim();
-    }
 
 
     /**
@@ -278,7 +265,7 @@
         row.addEventListener('dragstart', e => {
 
             // Add class to the currently dragged element
-            row.classList.add(this.#currentlyDraggedClassName);
+            row.classList.add(this.#settings.dragover_classname);
 
             // Save currently dragged element
             this.#currentlyDraggedElement = e.target;
@@ -306,7 +293,7 @@
         row.addEventListener('dragend', () => {
 
             // Remove class from the currently dragged element
-            row.classList.remove(this.#currentlyDraggedClassName);
+            row.classList.remove(this.#settings.dragover_classname);
 
             // Remove currently dragged element
             this.#currentlyDraggedElement = null;
@@ -473,7 +460,7 @@
                     padding-left: 1.5em;
                 }
                 /* before drag ends, visual difference from other rows */
-                table[dragtosort=true] tr.` + this.#currentlyDraggedClassName + ` {
+                table[dragtosort=true] tr.` + this.#settings.dragover_classname + ` {
                     opacity: 0.2;
                 }
             `;
