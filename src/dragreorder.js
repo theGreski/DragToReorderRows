@@ -6,7 +6,7 @@
  *  - 'data-dragtosort-table'     Should reference the controller table acronym or index
  *  - 'data-dragtosort-rowskip'   Number of top rows to exclude from dragging
  *  - 'data-dragtosort-action'    Way of returning new sort order. Possible values are: 'button', 'instant'
- * Each row should have 'data-id' with the database row ir reference
+ * Each row should have 'data-id' with the database row id reference
  *
  * If handling additional buttons, add attributes to the buttons:
  *  - data-dragbtn    Action of the button. Possible values are: 'save', 'cancel, 'conditional'
