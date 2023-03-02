@@ -147,7 +147,6 @@
         }
 
         for (const property in settings) {
-            //console.log(`${property}: ${object[property]}`);
             this.#settings[property] = settings[property];
         }
 
@@ -221,7 +220,7 @@
         if(DEBUG) console.log("Callback", this.#callback);
 
 
-        if (typeof(this.#callback) == 'function') {
+        if (typeof(this.#callback) === 'function') {
             this.#callback(this.getOrder());
         }
 
@@ -236,13 +235,6 @@
     }
 
 
-
-
-    
-
-
-
-    
 
 
 
